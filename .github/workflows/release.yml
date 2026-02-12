@@ -24,20 +24,16 @@ jobs:
 
     - name: Install dependencies
       run: pnpm install
-      continue-on-error: true
 
     - name: Package extension
       run: pnpm run package
-      continue-on-error: true
 
     - name: Create VSIX
-      run: pnpm exec vsce package --out luarocks-tools.vsix
-      continue-on-error: true
+      run: pnpm exec vsce package
 
-    - name: Create Release
+    - name: Upload Release Assets
       uses: softprops/action-gh-release@v1
       with:
-        files: luarocks-tools.vsix
+        files: '*.vsix'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      continue-on-error: true

@@ -1,7 +1,7 @@
 {
   "icon": "icon.png",
   "publisher": "luarocks",
-  "name": "help",
+  "name": "luarocks",
   "displayName": "LuaRocks Support",
   "description": "Manage LuaRocks from Visual Studio Code.",
   "version": "0.0.1",
