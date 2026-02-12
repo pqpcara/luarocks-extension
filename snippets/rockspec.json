@@ -1,0 +1,301 @@
+{
+  "Rockspec Template": {
+    "prefix": "rockspec",
+    "body": [
+      "package = \"${1:package_name}\"",
+      "version = \"${2:1.0.0}-${3:1}\"",
+      "rockspec_format = \"3.0\"",
+      "",
+      "source = {",
+      "\turl = \"${4:https://example.com/package.tar.gz}\",",
+      "\ttag = \"v${2:1.0.0}\"",
+      "}",
+      "",
+      "description = {",
+      "\tsummary = \"${5:Short description}\",",
+      "\tdetailed = [[${6:Detailed description}]],",
+      "\thomepage = \"${7:https://example.com}\",",
+      "\tlicense = \"${8:MIT}\"",
+      "}",
+      "",
+      "dependencies = {",
+      "\t\"lua >= 5.1\"",
+      "}",
+      "",
+      "build = {",
+      "\ttype = \"builtin\",",
+      "\tmodules = {",
+      "\t\t[\"${1:package_name}\"] = \"src/${1:package_name}.lua\"",
+      "\t}",
+      "}",
+      "$0"
+    ],
+    "description": "Complete rockspec template"
+  },
+  "package": {
+    "prefix": "package",
+    "body": "package = \"${1:package_name}\"",
+    "description": "Package name"
+  },
+  "version": {
+    "prefix": "version",
+    "body": "version = \"${1:1.0.0}-${2:1}\"",
+    "description": "Package version"
+  },
+  "rockspec_format": {
+    "prefix": "rockspec_format",
+    "body": "rockspec_format = \"${1|1.0,1.1,2.0,3.0|}\"",
+    "description": "Rockspec format version"
+  },
+  "source": {
+    "prefix": "source",
+    "body": [
+      "source = {",
+      "\turl = \"${1:https://example.com/package.tar.gz}\",",
+      "\t${2|tag,branch,md5,sha256|}= \"${3:value}\"",
+      "}$0"
+    ],
+    "description": "Source configuration"
+  },
+  "source.url": {
+    "prefix": "url",
+    "body": "url = \"${1:https://example.com/package-\\$(version).tar.gz}\"",
+    "description": "Source URL"
+  },
+  "source.tag": {
+    "prefix": "tag",
+    "body": "tag = \"${1:v1.0.0}\"",
+    "description": "Git tag"
+  },
+  "source.branch": {
+    "prefix": "branch",
+    "body": "branch = \"${1:main}\"",
+    "description": "Git branch"
+  },
+  "source.md5": {
+    "prefix": "md5",
+    "body": "md5 = \"${1:hash}\"",
+    "description": "MD5 checksum"
+  },
+  "source.sha256": {
+    "prefix": "sha256",
+    "body": "sha256 = \"${1:hash}\"",
+    "description": "SHA256 checksum"
+  },
+  "description": {
+    "prefix": "description",
+    "body": [
+      "description = {",
+      "\tsummary = \"${1:Short description}\",",
+      "\tdetailed = [[${2:Detailed description}]],",
+      "\thomepage = \"${3:https://example.com}\",",
+      "\tlicense = \"${4|MIT,Apache-2.0,GPL-3.0,BSD-3-Clause,ISC|}\"",
+      "}$0"
+    ],
+    "description": "Package description"
+  },
+  "license": {
+    "prefix": "license",
+    "body": "license = \"${1|MIT,Apache-2.0,GPL-3.0,BSD-3-Clause,ISC,MPL-2.0,LGPL-3.0|}\"",
+    "description": "License type"
+  },
+  "author": {
+    "prefix": "author",
+    "body": "author = \"${1:Name} <${2:email@example.com}>\"",
+    "description": "Package author"
+  },
+  "maintainer": {
+    "prefix": "maintainer",
+    "body": "maintainer = \"${1:Name} <${2:email@example.com}>\"",
+    "description": "Package maintainer"
+  },
+  "dependencies": {
+    "prefix": "dependencies",
+    "body": [
+      "dependencies = {",
+      "\t\"lua >= ${1:5.1}\"${2:,}",
+      "\t$0",
+      "}"
+    ],
+    "description": "Package dependencies"
+  },
+  "build_dependencies": {
+    "prefix": "build_dependencies",
+    "body": [
+      "build_dependencies = {",
+      "\t\"${1:package} >= ${2:1.0}\"",
+      "}$0"
+    ],
+    "description": "Build dependencies"
+  },
+  "test_dependencies": {
+    "prefix": "test_dependencies",
+    "body": [
+      "test_dependencies = {",
+      "\t\"${1:busted} >= ${2:2.0}\"",
+      "}$0"
+    ],
+    "description": "Test dependencies"
+  },
+  "build": {
+    "prefix": "build",
+    "body": [
+      "build = {",
+      "\ttype = \"${1|builtin,make,cmake,command,module,none|}\",",
+      "\tmodules = {",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ],
+    "description": "Build configuration"
+  },
+  "build.builtin": {
+    "prefix": "build-builtin",
+    "body": [
+      "build = {",
+      "\ttype = \"builtin\",",
+      "\tmodules = {",
+      "\t\t[\"${1:module_name}\"] = \"${2:src/module.lua}\"",
+      "\t}$0",
+      "}"
+    ],
+    "description": "Builtin build type"
+  },
+  "build.make": {
+    "prefix": "build-make",
+    "body": [
+      "build = {",
+      "\ttype = \"make\",",
+      "\tbuild_variables = {",
+      "\t\t${1:VAR} = \"${2:value}\"",
+      "\t},",
+      "\tinstall_variables = {",
+      "\t\tINSTALL_DIR = \"\\$(LUADIR)\"",
+      "\t}$0",
+      "}"
+    ],
+    "description": "Make build type"
+  },
+  "build.cmake": {
+    "prefix": "build-cmake",
+    "body": [
+      "build = {",
+      "\ttype = \"cmake\",",
+      "\tvariables = {",
+      "\t\tCMAKE_BUILD_TYPE = \"${1:Release}\"",
+      "\t}$0",
+      "}"
+    ],
+    "description": "CMake build type"
+  },
+  "build.command": {
+    "prefix": "build-command",
+    "body": [
+      "build = {",
+      "\ttype = \"command\",",
+      "\tbuild_command = \"${1:make all}\",",
+      "\tinstall_command = \"${2:make install}\"$0",
+      "}"
+    ],
+    "description": "Command build type"
+  },
+  "build.modules": {
+    "prefix": "modules",
+    "body": [
+      "modules = {",
+      "\t[\"${1:module_name}\"] = \"${2:src/module.lua}\"$0",
+      "}"
+    ],
+    "description": "Lua modules"
+  },
+  "build.modules.c": {
+    "prefix": "modules-c",
+    "body": [
+      "[\"${1:module_name}\"] = {",
+      "\tsources = { \"${2:src/module.c}\" },",
+      "\tlibraries = { \"${3:library}\" },",
+      "\tincdirs = { \"${4:include/}\" },",
+      "\tlibdirs = { \"${5:lib/}\" }",
+      "}$0"
+    ],
+    "description": "C module definition"
+  },
+  "build.install": {
+    "prefix": "install",
+    "body": [
+      "install = {",
+      "\tlua = {",
+      "\t\t[\"${1:module}\"] = \"${2:src/module.lua}\"",
+      "\t},",
+      "\tbin = {",
+      "\t\t${3:script} = \"${4:bin/script}\"",
+      "\t}$0",
+      "}"
+    ],
+    "description": "Install configuration"
+  },
+  "build.copy_directories": {
+    "prefix": "copy_directories",
+    "body": [
+      "copy_directories = {",
+      "\t\"${1:doc}\",",
+      "\t\"${2:tests}\"$0",
+      "}"
+    ],
+    "description": "Directories to copy"
+  },
+  "build.platforms": {
+    "prefix": "platforms",
+    "body": [
+      "platforms = {",
+      "\t${1|unix,windows,macosx,linux|} = {",
+      "\t\tmodules = {",
+      "\t\t\t$0",
+      "\t\t}",
+      "\t}",
+      "}"
+    ],
+    "description": "Platform-specific build"
+  },
+  "test": {
+    "prefix": "test",
+    "body": [
+      "test = {",
+      "\ttype = \"${1|busted,command|}\",",
+      "\tcommand = \"${2:busted}\",",
+      "\tflags = { \"${3:--verbose}\" }$0",
+      "}"
+    ],
+    "description": "Test configuration"
+  },
+  "supported_platforms": {
+    "prefix": "supported_platforms",
+    "body": [
+      "supported_platforms = {",
+      "\t\"${1|unix,windows,macosx,linux,freebsd,openbsd,netbsd,solaris|}\"$0",
+      "}"
+    ],
+    "description": "Supported platforms"
+  },
+  "external_dependencies": {
+    "prefix": "external_dependencies",
+    "body": [
+      "external_dependencies = {",
+      "\t${1:LIBRARY} = {",
+      "\t\theader = \"${2:header.h}\",",
+      "\t\tlibrary = \"${3:library}\"",
+      "\t}$0",
+      "}"
+    ],
+    "description": "External dependencies"
+  },
+  "lua_versions": {
+    "prefix": "lua_versions",
+    "body": [
+      "lua_versions = {",
+      "\t\"${1|5.1,5.2,5.3,5.4,luajit|}\"$0",
+      "}"
+    ],
+    "description": "Supported Lua versions"
+  }
+}

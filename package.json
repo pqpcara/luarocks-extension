@@ -4,7 +4,7 @@
   "name": "luarocks",
   "displayName": "LuaRocks Support",
   "description": "Manage LuaRocks from Visual Studio Code.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": {
     "name": "pqpcara",
     "url": "https://github.com/pqpcara"
@@ -38,6 +38,12 @@
         "language": "rockspec",
         "scopeName": "source.rockspec",
         "path": "./syntaxes/rockspec.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "rockspec",
+        "path": "./snippets/rockspec.json"
       }
     ],
     "commands": [
