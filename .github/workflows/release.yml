@@ -1,0 +1,43 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20.x
+
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8
+
+    - name: Install dependencies
+      run: pnpm install
+      continue-on-error: true
+
+    - name: Package extension
+      run: pnpm run package
+      continue-on-error: true
+
+    - name: Create VSIX
+      run: pnpm exec vsce package --out luarocks-tools.vsix
+      continue-on-error: true
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: luarocks-tools.vsix
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      continue-on-error: true
